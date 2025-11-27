@@ -79,8 +79,8 @@
   const onPreviousMonth = () => {
     if (monthIndex.value <= 0) {
       monthIndex.value = 11
-    } else {
       year.value--
+    } else {
       monthIndex.value--
     }
   }
@@ -88,8 +88,8 @@
   const onNextMonth = () => {
     if (monthIndex.value >= 11) {
       monthIndex.value = 0
-    } else {
       year.value++
+    } else {
       monthIndex.value++
     }
   }
