@@ -1,7 +1,9 @@
-<template>
-  <q-page> ... </q-page>
-</template>
-
 <script setup lang="ts">
-  //
+  import CalendarComponent from '@/components/CalendarComponent.vue'
 </script>
+
+<template>
+  <q-page>
+    <CalendarComponent />
+  </q-page>
+</template>

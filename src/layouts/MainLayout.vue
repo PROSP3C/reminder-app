@@ -20,7 +20,6 @@
     </q-header>
 
     <q-drawer
-      show-if-above
       v-model="menuOpen"
       side="right"
       style="display: flex; flex-direction: column; padding: 0.5rem 0.75rem"
@@ -53,7 +52,7 @@
       </q-tabs>
     </q-drawer>
 
-    <q-page-container style="padding-left: 1rem; padding-right: 1rem">
+    <q-page-container>
       <router-view />
     </q-page-container>
 
