@@ -73,11 +73,13 @@
     })),
   ])
 
-  const onPreviousMonth = () =>
-    monthIndex.value === 0 ? (monthIndex.value = 11) : monthIndex.value--
+  const onPreviousMonth = () => {
+    return monthIndex.value === 0 ? (monthIndex.value = 11) : monthIndex.value--
+  }
 
-  const onNextMonth = () =>
-    monthIndex.value === 11 ? (monthIndex.value = 0) : monthIndex.value++
+  const onNextMonth = () => {
+    return monthIndex.value === 11 ? (monthIndex.value = 0) : monthIndex.value++
+  }
 </script>
 
 <template>
