@@ -3,6 +3,12 @@
 
   const maxDaysOnCalendarUI = 42
 
+  enum MONTH_STATES {
+    PREV = 'PREV',
+    CURR = 'CURR',
+    NEXT = 'NEXT',
+  }
+
   const MONTH_INDEX_MAP: Record<number, string> = Object.freeze({
     0: 'January',
     1: 'February',
@@ -61,6 +67,7 @@
         prevMonthClippedDays.value +
         1,
       class: 'faded',
+      monthState: MONTH_STATES.PREV,
     })),
     ...Array.from(
       { length: getTotalDaysInMonth(currentMonthIndex.value) },
@@ -69,14 +76,18 @@
         day: i + 1,
         class: [
           i + 1 === selectedDay.value && 'selected',
-          i + 1 === new Date().getDate() && 'today',
+          i + 1 === new Date().getDate() &&
+            currentMonthIndex.value === new Date().getMonth() &&
+            'today',
         ],
+        monthState: MONTH_STATES.CURR,
       }),
     ),
     ...Array.from({ length: nextMonthClippedDays.value }, (_, i) => ({
       id: crypto.randomUUID(),
       day: i + 1,
       class: 'faded',
+      monthState: MONTH_STATES.NEXT,
     })),
   ])
 
@@ -98,7 +109,17 @@
     }
   }
 
-  const setSelectedDay = (day: number) => {
+  const setSelectedDay = (day: number, monthState: MONTH_STATES) => {
+    switch (monthState) {
+      case MONTH_STATES.PREV:
+        onPreviousMonth()
+        break
+      case MONTH_STATES.NEXT:
+        onNextMonth()
+        break
+      default:
+        break
+    }
     selectedDay.value = day
   }
 </script>
@@ -128,7 +149,7 @@
         :class="cell.class"
         :key="cell.id"
         v-for="cell in cells"
-        @click="() => setSelectedDay(cell.day)"
+        @click="() => setSelectedDay(cell.day, cell.monthState)"
       >
         <span>
           {{ cell.day }}
@@ -173,7 +194,7 @@
       line-height: normal;
 
       &.today {
-        background: #555;
+        background: #333;
         font-weight: bold;
       }
 
