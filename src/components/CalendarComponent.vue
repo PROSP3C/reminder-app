@@ -1,35 +1,11 @@
 <script lang="ts" setup>
   import { computed, ref } from 'vue'
-
-  const maxDaysOnCalendarUI = 42
-
-  enum MONTH_STATES {
-    PREV = 'PREV',
-    CURR = 'CURR',
-    NEXT = 'NEXT',
-  }
-
-  const MONTH_INDEX_MAP: Record<number, string> = Object.freeze({
-    0: 'January',
-    1: 'February',
-    2: 'March',
-    3: 'April',
-    4: 'May',
-    5: 'June',
-    6: 'July',
-    7: 'August',
-    8: 'September',
-    9: 'October',
-    10: 'November',
-    11: 'December',
-  })
-
-  const getTotalDaysInMonth = (month: number) => {
-    const now = new Date()
-    const year = now.getFullYear()
-
-    return new Date(year, month + 1, 0).getDate()
-  }
+  import {
+    getTotalDaysInMonth,
+    maxDaysOnCalendarUI,
+    MONTH_INDEX_MAP,
+    MONTH_STATES,
+  } from '@/utils/dateUtils'
 
   const selectedDay = ref(new Date().getDate())
   const monthIndex = ref(new Date().getMonth())
