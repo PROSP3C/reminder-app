@@ -1,0 +1,48 @@
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const email = ref('')
+  const password = ref('')
+  const showPassword = ref(false)
+
+  const onSubmit = () => {
+    console.log('Submitted.')
+  }
+</script>
+
+<template>
+  <q-form
+    autocorrect="off"
+    autocapitalize="off"
+    autocomplete="off"
+    spellcheck="false"
+    @submit="onSubmit"
+  >
+    <q-input
+      filled
+      v-model="email"
+      label="Email:"
+      lazy-rules
+      :rules="[(val) => !!val.length || 'Please enter your email']"
+    />
+
+    <q-input
+      filled
+      v-model="password"
+      label="Password:"
+      lazy-rules
+      :type="showPassword ? 'password' : 'text'"
+      :rules="[(val) => !!val.length || 'Please enter your password']"
+    >
+      <template v-slot:append>
+        <q-icon
+          :name="showPassword ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"
+          @click="showPassword = !showPassword"
+        />
+      </template>
+    </q-input>
+
+    <q-btn type="submit">Login</q-btn>
+  </q-form>
+</template>
