@@ -71,6 +71,5 @@
 <style lang="scss" scoped>
   .q-layout {
     height: 100vh;
-    background: $dark;
   }
 </style>

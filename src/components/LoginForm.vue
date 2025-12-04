@@ -43,6 +43,20 @@
       </template>
     </q-input>
 
-    <q-btn type="submit">Login</q-btn>
+    <q-btn
+      type="submit"
+      color="primary"
+      style="align-self: flex-end"
+    >
+      Login
+    </q-btn>
   </q-form>
 </template>
+
+<style lang="scss" scoped>
+  .q-form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
